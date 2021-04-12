@@ -1,0 +1,30 @@
+ // Find date for daylight saving 
+ 
+ 
+ int marchCount = 1;
+        int novemberCount = 1;
+        int year = 2024;
+     //   int year = Calendar.getInstance().get(Calendar.YEAR);
+        Calendar cal = new GregorianCalendar(year, Calendar.FEBRUARY, 1);
+        for (int i = 0, inc = 1; i < 366 && cal.get(Calendar.YEAR) == year; i+=inc) {
+            if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                // this is a sunday
+                cal.add(Calendar.DAY_OF_MONTH, 7);
+             //   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+               // String currentDateandTime = sdf.format(cal.getTime());
+
+                if(cal.get(Calendar.MONTH) == Calendar.MARCH ){
+                    if(marchCount == 2){
+                        Debugger.logI(TAG," sunday :"+cal.getTime());
+                    }
+                    marchCount++;
+                }
+                if(cal.get(Calendar.MONTH) == Calendar.NOVEMBER){
+                    if(novemberCount == 2){
+                        Debugger.logI(TAG," sunday :"+cal.getTime());
+                    }
+                    novemberCount++;
+                }
+                inc = 7;
+            }
+        }
